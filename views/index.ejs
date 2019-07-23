@@ -1,0 +1,180 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title>E-commerce</title>
+    </head>
+    <body>
+    <!--header-->
+        <div class="con1">
+            <div>
+                <h2 class="h1c"><a href="#" style="color: #607d8b">Welcome to Shop!</a></h2>
+            </div>
+            <div >
+                <% if(!user) { %>
+                    <h3 class ="log_in" >Please <a href="/login">log in</a> or <a href="/register">sign up</a>.</h3>
+                <% } else { %>
+                    <nav>
+                        <ul style="margin: 0; padding: 0">
+                            <li>
+                                <% if(user.avatar) { %>
+                                <img src = "images/<%=user.avatar%>" style="border-radius: 50%" data-toggle="modal" data-target="#profilePop" class="pic"/>
+                                <% } %>
+                                <%- include('commonModule/profilepopup.ejs') %>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <% if(user.role == 'admin') { %>
+                                <h3 style="margin: 0;"><strong><a href="/admin/profile" style="color:#607d8b;">Profile</a></strong></h3>
+                                <% } else { %>
+                                <h3><strong><a href="/profile" style="color:#607d8b;">Profile</a></strong></h3>
+                                <% } %>
+                            </li>
+                        </ul>
+                    <nav>
+                <% } %>
+            </div>
+        </div>
+        <!------------------------------------------------------------------------------------------------------->
+        <div class="index-bdy">
+            <ul>
+                <%- include('commonModule/showProducts.ejs') %>
+            </ul>
+        </div>
+        <!------------------------------------------------------------------------------------------------------->
+        <!--footer-->
+        <div class="copyright">
+            <div class="row">
+                <div class="small-12 columns">
+                    <nav>
+                        <p>
+                        <ul class="footer-menu left">
+                            <li><span>&#169</span> 2018 copyright E-commerce Inc.</li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7407">
+                                <a href="#">Home</a><br />
+                            </li>
+                        </ul>
+                        </p>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    <!----------------------------------------------------------------------------------------------------------->
+
+
+
+    <!----------------------------------------------------------------------------------------------------------->
+        <!--<script type="text/javascript">-->
+
+            <!--var addButtons = oninput.querySelectorAll(".quantity");-->
+            <!--for(i = 0;i < addButtons.length;i++){-->
+                <!--if(oninput.addEventListener){-->
+                    <!--addButtons[i].addEventListener("click", function () {-->
+                        <!--(this.id);-->
+                    <!--});-->
+                <!--}-->
+            <!--};-->
+
+
+            <!--var max = collection[j].quantity;-->
+            <!--$('input').keyup(function(){-->
+
+                <!--var inputValue = $(this).val();-->
+                <!--if(inputValue > max){-->
+                    <!--alert('greater!');-->
+
+                    <!--$(this).val('')-->
+                <!--}-->
+            <!--});-->
+        <!--</script>-->
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#data').after('<div id="nav"></div>');
+                var rowsShown = 3;
+                var rowsTotal = $('#data div .coln').length;
+                var numPages = rowsTotal/rowsShown;
+                for(i = 0;i < numPages;i++) {
+                    var pageNum = i + 1;
+                    $('#nav').append('<a href="#" class="btn btn-default" rel="'+i+'">'+pageNum+'</a> ');
+                }
+                $('#data div .coln').hide();
+                $('#data div .coln').slice(0, rowsShown).show();
+                $('#nav a:first').addClass('active');
+                $('#nav a').bind('click', function(){
+
+                    $('#nav a').removeClass('active');
+                    $(this).addClass('active');
+                    var currPage = $(this).attr('rel');
+                    var startItem = currPage * rowsShown;
+                    var endItem = startItem + rowsShown;
+                    $('#data div .coln').css('opacity','0.0').hide().slice(startItem, endItem).
+                    css('display','table-row').animate({opacity:1}, 300);
+                });
+            });
+        </script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var addButtons = document.querySelectorAll(".atcbt");
+                // console.log(addButtons);
+                for(i = 0;i < addButtons.length;i++){
+                    if(document.addEventListener){
+                        addButtons[i].addEventListener("click", function () {
+                            AddToCart(this.id);
+                        });
+                    }
+                };
+
+
+                function AddToCart(id)
+                {
+                    console.log(id);
+                    var quantity = Number(document.getElementById("quant"+id).value);
+                    $.ajax({
+                        type: "GET",
+                        url: "/cart/addtocart",
+                        dataType: "json",
+                        data: {"id": id, "quantity": quantity},
+                        success: function (response){
+                            alert("product added");
+                        }
+                    });
+                }
+            });
+        </script>
+
+        <script>
+            $('.dobDate',).text(OnlyDate($('.dobDate').text()));
+            function logout()
+            {
+                $.confirm({
+                    title: 'Confirm Logout!',
+                    content: 'Do you really want logout?',
+                    buttons: {
+                        'Yes': {
+                            btnClass: 'btn-success',
+                            action: function(){
+                                window.location.replace("/logout");
+                            }
+                        },
+                        'No': {btnClass: 'btn-danger',}
+                    }
+                });
+            }
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,56 @@
+<html>
+<head>
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>succeded</title>
+</head>
+    <body>
+        <div class="header_white-bg">
+            <nav>
+                <ul style="float: left; padding: 20px;">
+                    <li>
+                        <h2 class="h1c" style="width: 300px"><a href="/" style="color: #607d8b">Welcome to Shop!</a></h2>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <% if(user.avatar) { %>
+                        <img src = "../images/<%=user.avatar%>" data-toggle="modal" data-target="#profilePop" class="pic"/>
+                        <% } %>
+                        <%- include('commonModule/profilepopup.ejs') %>
+                    </li>
+                    <li>
+                        <a href="/cart"><img src="../uploads/iu.jpeg" style="width:60px; height: 50px; padding-right: 10px; padding-top: 5px;  background-color: transparent"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!------------------------------------------------------------------------------------------------------------>
+
+    <div class="container" style="margin: 20px; float: revert">
+            <h2> You Have Successfully Placed Your Order Of Rs. <%=product.price%>... Thanks For Shopping.</h2>
+        </div>
+
+    <!------------------------------------------------------------------------------------------------------------>
+
+        <div class="copyright">
+            <div class="row">
+                <div class="small-12 columns">
+                    <nav>
+                        <p>
+                        <ul class="footer-menu left">
+                            <li><span>&#169</span> 2018 copyright E-commerce Inc.</li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7407">
+                                <a href="/">Home</a><br />
+                            </li>
+                        </ul>
+                        </p>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

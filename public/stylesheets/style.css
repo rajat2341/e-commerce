@@ -1,0 +1,143 @@
+body {
+    padding: 0px;
+    margin: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #607d8b;
+    text-decoration: none;
+}
+
+.container{
+    max-width: 500px;
+    background-color: papayawhip;
+    margin:0 auto;
+}
+
+.copyright {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: darkslategray;
+    color: white;
+    padding: 20px;
+}
+
+nav {
+    width: 100%;
+    text-align: center;
+    height: 100%;
+}
+
+nav ul {
+    text-align: center;
+    padding-top: 10px;
+    padding-right: 10px;
+}
+
+nav ul li {
+    float: right;
+    margin-left: 20px;
+    /*margin-right:20px;*/
+    text-align: center;
+    color: #607d8b;
+}
+
+.pic {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    resize: both;
+    width: 50px;
+    height: 50px;
+}
+
+.header_white-bg {
+    margin:0 auto;
+    padding: 0px;
+    background-color: #eceff1;
+    height: 80px;
+}
+
+.log_in {
+    float: right;
+    margin: 0;
+    width: 40%;
+    text-align: right;
+}
+
+.h1c {
+    margin: 0;
+    width: 50%;
+    float: left;
+}
+
+.con1 {
+    padding: 20px;
+    color: #bcaaa4;
+    background-color: #4e342e;
+    height: 80px;
+}
+
+.copyrightindex {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: darkslategray;
+    color: white;
+    padding: 20px;
+}
+
+.body-admin {
+    padding: 20px;
+}
+
+.addProducts {
+    max-width: 500px;
+    padding: 20px;
+}
+
+.editProducts {
+    max-width: 500px;
+    padding: 20px;
+}
+
+.index-bdy {
+    padding-bottom: 100px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.quan {
+    max-width: 100px;
+}
+
+.card {
+    max-width: 80px;
+    width: 400px;
+    padding: 20px;
+    border: #4e342e;
+}
+
+.card-img-top {
+    height: 50%;
+    width: 600%;
+}
+
+.profilePicPop {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 60%;
+    resize: both;
+    width: 80px;
+    height: 80px;
+}
+
+img {
+    width: 50px;
+    height: 50px;
+}

@@ -1,0 +1,51 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>register</title>
+</head>
+<body>
+<div class="container">
+    <h1>Register Yourself</h1><br />
+    <% if (locals.messages) { %>
+
+    <script language="javascript">
+        alert("<%= messages.msg %>");
+    </script>
+
+    <% } %>
+    <form action="/register" method="post">
+        <div class="form-group">
+            <label>Username:</label>
+            <input type="text" class="form-control" required name="username"/><br/>
+        </div>
+        <div class="form-group">
+            <label>Password:</label>
+            <input type="password" class="form-control" required name="password"/>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Submit"/>
+        </div>
+    </form>
+</div>
+<div class="copyright">
+    <div class="row">
+        <div class="small-12 columns">
+            <nav>
+                <p>
+                <ul class="footer-menu left">
+                    <li><span>&#169</span> 2018 copyright E-commerce Inc.</li>
+                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7407">
+                        <a href="/">Home</a><br />
+                    </li>
+                </ul>
+                </p>
+            </nav>
+        </div>
+    </div>
+</div>
+</body>
+</html>

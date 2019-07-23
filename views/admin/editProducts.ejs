@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="../stylesheets/style.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Edit Products</title>
+    </head>
+    <body>
+    <div class="header_white-bg">
+        <nav>
+            <ul style="float: left; padding: 20px;">
+                <li>
+                    <h2 class="h1c" style="width: 300px"><a href="/" style="color: #607d8b">Welcome to Shop!</a></h2>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <img src = "../images/<%=user.avatar%>" data-toggle="modal" data-target="#profilePop" class="pic"/>
+                    <%- include('../commonModule/profilepopup.ejs') %>
+                </li>
+                <li>
+                    <div class="dropdown" style="padding: 10px">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Product Management
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu" style="align-items: center">
+                            <li style="width: 150px; float: left"><a href="/admin/addProducts">Add Products</a></li>
+                            <li style="width: 150px; float: left"><a href="/admin/editProducts">Edit Products</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+        <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+        <div class="editProducts">
+            <h1>EDIT PRODUCTS</h1><br />
+            <% if (locals.messages) { %>
+
+            <script language="javascript">
+                alert("<%= messages.msg %>");
+            </script>
+
+            <% } %>
+            <form action="/admin/editProducts" method="post">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name"/><br/>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" class="form-control" name="description"/><br />
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" class="form-control" name="price"/><br />
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" class="form-control" name="quantity"/>
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-primary" value="Submit"/>
+                </div>
+            </form>
+        </div>
+        <div class="copyright">
+            <div class="row">
+                <div class="small-12 columns">
+                    <nav>
+                        <p>
+                        <ul class="footer-menu left">
+                            <li><span>&#169</span> 2018 copyright E-commerce Inc.</li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7407">
+                                <a href="/">Home</a><br />
+                            </li>
+                        </ul>
+                        </p>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

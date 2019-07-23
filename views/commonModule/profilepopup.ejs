@@ -1,0 +1,49 @@
+<!------------------------------------------------------------------------------------->
+<div class="modal fade" id="profilePop" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+        <!------------------------------------------------------------------------------------>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="../images/<%=user.avatar%>" class="profilePicPop"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <center>
+                            <p style="font-weight:bold;font-size: 20px;">
+                                <% if(user.role == 'admin') { %>
+                                    <a href="/admin/profile" style="color: #607d8b">Profile Info</a>
+                                <% } else { %>
+                                    <a href="/profile" style="color: #607d8b">Profile Info</a>
+                                <% } %>
+                            </p>
+                        </center>
+                        <div class="form-group">
+                            <label>Name : <%= user.username %></label>
+                        </div>
+                    </div>
+        <!---------------------------------------------------------------------------------->
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="col-sm-6">
+                            <form action="/dp" enctype="multipart/form-data" method="post" style="width: 100px;">
+                                <div class="form-group" style="width: 230px; margin: 0;">
+                                    <input type="file" class="form-control" name="file">
+                                    <div style="padding: 10px"><input type="submit" class="btn btn-alert" value="submit"/></div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-6">
+                            <a class="btn btn-danger" onclick="logout()">Logout</a>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------------------------------------------------------------------------------------------------->
+
+

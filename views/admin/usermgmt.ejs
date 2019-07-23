@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+        <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title> <%= user.username%>'s profile</title>
+    </head>
+    <body>
+<!-- header------------------------------------------------------------------------------------------------>
+        <div class="header_white-bg">
+            <nav>
+                <ul style="float: left; padding: 20px;">
+                    <li>
+                        <h2 class="h1c" style="width: 300px"><a href="/" style="color: #607d8b">Welcome to Shop!</a></h2>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        <img src = "../images/<%=user.avatar%>" data-toggle="modal" data-target="#profilePop" class="pic"/>
+                        <%- include('../commonModule/profilepopup.ejs') %>
+                    </li>
+                    <li>
+                        <div class="dropdown" style="padding: 10px">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Product Management
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                <li style="width: 150px; float: left"><a href="/admin/addProducts">Add Products</a></li>
+                                <li style="width: 150px; float: left"><a href="/admin/editProducts">Edit Products</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <div style="padding: 10px">
+                            <a href="/admin/usermgmt" class="btn btn-primary">User Management</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    <!---------------------------------------------------------------------------------------------------------------------------------------->
+
+        <div class="container-fluid" style="padding-bottom: 100px">
+            <% for(var i=0; i < collection.length; i++) { %>
+            <nav style="height: 100px; padding: 20px; margin: 20px">
+                <ul>
+                    <div>
+                        <li>
+                            <div style="float: right; width: 200px">
+                                <p>Name: <h3><strong><%=collection[i].username%></strong></h3></p>
+                            </div>
+                        </li>
+                        <li>
+                            <div style="float: right;">
+                                <p>Role: <h3><strong><%=collection[i].role%></strong></h3></p>
+                            </div>
+                        </li>
+                        <li style="float: right; width:200px">
+                            <% if(collection[i].role == 'admin') { %>
+                            <a href="#" id="<%=collection[i]._id%>" class="btn btn-primary change">Make User</a>
+                            <% } else { %>
+                            <a href="#" id="<%=collection[i]._id%>" class="btn btn-primary change">Make Admin</a>
+                            <% } %>
+                        </li>
+                        <li>
+                            <div>
+                                <img src="../images/<%=collection[i].avatar%>"/>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+            <% } %>
+        </div>
+
+    <!---------------------------------------------------------------------------------------------------------------------------------------->
+
+        <div class="copyright">
+            <div class="row">
+                <div class="small-12 columns">
+                    <nav>
+                        <p>
+                        <ul class="footer-menu left">
+                            <li><span>&#169</span> 2018 copyright E-commerce Inc.</li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7407">
+                                <a href="/">Home</a><br />
+                            </li>
+                        </ul>
+                        </p>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+<!---------------------------------------------------------------------------------------------------------------------------------------->
+
+        <script src="../javascripts/Common.js"></script>
+        <script>
+            $('.dobDate',).text(OnlyDate($('.dobDate').text()));
+            function logout()
+            {
+                $.confirm({
+                    title: 'Confirm Logout!',
+                    content: 'Do you really want logout?',
+                    buttons: {
+                        'Yes': {
+                            btnClass: 'btn-success',
+                            action: function(){
+                                window.location.replace("/logout");
+                            }
+                        },
+                        'No': {btnClass: 'btn-danger',}
+                    }
+                });
+            }
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var addButtons = document.querySelectorAll(".change");
+                console.log(addButtons);
+                for(i = 0;i < addButtons.length;i++){
+                    if(document.addEventListener){
+                        addButtons[i].addEventListener("click", function () {
+                            // console.log(this.id);
+                            changeRole(this.id);
+                        });
+                    }
+                };
+
+
+                function changeRole(id)
+                {
+                    console.log(id);
+                    $.ajax({
+                        type: "GET",
+                        url: "/admin/changeRole",
+                        dataType: "json",
+                        data: {"id": id},
+                        success: function (response){
+                            alert("user role changed");
+                        }
+                    });
+                }
+            });
+        </script>
+
+    </body>
+</html>
